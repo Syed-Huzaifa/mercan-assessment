@@ -1,32 +1,31 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Sidebar from './components/Sidebar.vue'
+import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar'
+import { Separator } from '@/components/ui/separator'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const pageTitle = computed(() => {
+  return route.name as string || 'Dashboard'
+})
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <h1 class="text-md font-bold underline">
-    Hello world!
-  </h1>
+  <SidebarProvider>
+    <Sidebar />
+    <SidebarInset>
+      <header class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+        <div class="flex items-center gap-2 px-4">
+          <SidebarTrigger class="-ml-1" />
+          <Separator orientation="vertical" class="mr-2 h-4" />
+          <h1 class="text-lg font-semibold">{{ pageTitle }}</h1>
+        </div>
+      </header>
+      <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <router-view />
+      </div>
+    </SidebarInset>
+  </SidebarProvider>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
