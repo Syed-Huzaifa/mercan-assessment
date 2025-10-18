@@ -70,6 +70,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { 
   Sidebar, 
   SidebarContent, 
@@ -82,6 +83,7 @@ import {
 } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { useRoute } from 'vue-router'
+import menuLinksData from '@/data/menuLinks.json'
 
 // Import custom SVG icons
 import DashboardIcon from '@/assets/icons/dashboard.svg'
@@ -96,70 +98,49 @@ import MyTeamIcon from '@/assets/icons/my-team.svg'
 import LogoMarkIcon from '@/assets/icons/Logo-mark.svg'
 import NotificationIcon from '@/assets/icons/notification.svg'
 
+interface MenuLink {
+  ordinal: number
+  icon: string
+  title: string
+  path: string
+  enabled: boolean
+}
+
 interface NavigationItem {
   id: string
   label: string
   path: string
   icon: any
+  enabled: boolean
 }
 
 const route = useRoute()
 
-const navigationItems: NavigationItem[] = [
-  {
-    id: 'dashboard',
-    label: 'Dashboard',
-    path: '/',
-    icon: DashboardIcon
-  },
-  {
-    id: 'my-information',
-    label: 'My information',
-    path: '/my-information',
-    icon: EmployeesIcon
-  },
-  {
-    id: 'my-payslips',
-    label: 'My payslips',
-    path: '/my-payslips',
-    icon: LaunchpadIcon
-  },
-  {
-    id: 'timesheet',
-    label: 'Timesheet',
-    path: '/timesheet',
-    icon: TimeEntryIcon
-  },
-  {
-    id: 'leaves',
-    label: 'Leaves',
-    path: '/leaves',
-    icon: LeavesIcon
-  },
-  {
-    id: 'benefits',
-    label: 'Benefits',
-    path: '/benefits',
-    icon: BenefitsIcon
-  },
-  {
-    id: 'documents',
-    label: 'Documents',
-    path: '/documents',
-    icon: DocumentsIcon
-  },
-  {
-    id: 'org-chart',
-    label: 'Organizational chart',
-    path: '/org-chart',
-    icon: OrgChartIcon
-  },
-  {
-    id: 'my-team',
-    label: 'My Team',
-    path: '/my-team',
-    icon: MyTeamIcon
-  }
-]
+// Icon mapping
+const iconMap: Record<string, any> = {
+  'dashboard': DashboardIcon,
+  'employees': EmployeesIcon,
+  'launchpad': LaunchpadIcon,
+  'time-entry': TimeEntryIcon,
+  'leaves': LeavesIcon,
+  'benefits': BenefitsIcon,
+  'documents': DocumentsIcon,
+  'organizational-chart': OrgChartIcon,
+  'my-team': MyTeamIcon
+}
+
+// Process menu links data
+const navigationItems = computed<NavigationItem[]>(() => {
+  return menuLinksData
+    .filter((item: MenuLink) => item.enabled)
+    .sort((a: MenuLink, b: MenuLink) => a.ordinal - b.ordinal)
+    .map((item: MenuLink) => ({
+      id: item.title,
+      label: item.title.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      path: `/${item.path}`,
+      icon: iconMap[item.icon] || DashboardIcon,
+      enabled: item.enabled
+    }))
+})
 </script>
 
