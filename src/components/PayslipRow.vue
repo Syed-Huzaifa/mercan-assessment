@@ -1,5 +1,4 @@
 <template>
-  <!-- Main Table Row -->
   <TableRow 
     class="border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
     @click="$emit('toggleExpanded', payslip.id)"
@@ -43,7 +42,6 @@
     </TableCell>
   </TableRow>
   
-  <!-- Expanded Detailed View -->
   <TableRow v-if="isExpanded" class="border-b border-gray-200">
     <TableCell colspan="6" class="p-0">
       <PayslipPDFPreview :payslip="payslip" />

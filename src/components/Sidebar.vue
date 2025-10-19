@@ -1,6 +1,5 @@
 <template>
   <Sidebar variant="sidebar" class="border-r">
-    <!-- Header Section -->
     <SidebarHeader class="bg-[#001738] text-white p-4">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -17,7 +16,6 @@
       </div>
     </SidebarHeader>
     
-    <!-- Company Info Section -->
     <div class="flex flex-col gap-6 items-center justify-center p-4 bg-white border-b border-[#001738]">
       <div class="flex flex-col items-center justify-center gap-2 mb-3">
           <img :src="LogoMarkIcon" alt="Logo" class="w-12 h-12 items-center" />
@@ -25,7 +23,6 @@
           <div class="text-sm text-[#001738] font-semibold">Mercans USA Ltd.</div>
       </div>
       
-      <!-- Action Icons -->
       <div class="flex items-center justify-center gap-12 mb-3">
         <div class="relative">
           <img :src="LaunchpadIcon" alt="Launchpad" class="h-5 w-5" />
@@ -41,7 +38,6 @@
       </div>
     </div>
     
-    <!-- Navigation Menu -->
     <SidebarContent class="bg-white">
       <SidebarMenu class="p-2">
         <SidebarMenuItem v-for="item in navigationItems" :key="item.id">
@@ -60,7 +56,6 @@
       </SidebarMenu>
     </SidebarContent>
     
-    <!-- Footer -->
     <SidebarFooter class="bg-gray-50 border-t p-4">
       <div class="text-center text-sm text-gray-500">
         Mercans © 2025
@@ -116,7 +111,6 @@ interface NavigationItem {
 
 const route = useRoute()
 
-// Icon mapping
 const iconMap: Record<string, any> = {
   'dashboard': DashboardIcon,
   'employees': EmployeesIcon,
@@ -129,7 +123,6 @@ const iconMap: Record<string, any> = {
   'my-team': MyTeamIcon
 }
 
-// Process menu links data
 const navigationItems = computed<NavigationItem[]>(() => {
   return menuLinksData
     .filter((item: MenuLink) => item.enabled)

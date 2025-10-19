@@ -4,7 +4,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { 
-      path: '/', 
+      path: '/dashboard', 
       name: 'Dashboard',
       component: () => import('../views/Dashboard.vue') 
     },
@@ -34,12 +34,7 @@ const router = createRouter({
       component: () => import('../views/Benefits.vue') 
     },
     { 
-      path: '/documents', 
-      name: 'Documents',
-      component: () => import('../views/Documents.vue') 
-    },
-    { 
-      path: '/org-chart', 
+      path: '/orgchart', 
       name: 'Organizational chart',
       component: () => import('../views/OrgChart.vue') 
     },

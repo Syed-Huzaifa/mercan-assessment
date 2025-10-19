@@ -1,19 +1,15 @@
 <template>
   <div class="min-h-screen rounded-b-lg bg-[#F5F5F5]">
-    <!-- Header with Currency Filter -->
     <PayslipsHeader 
       v-model:selected-currency="selectedCurrency"
       :currency-counts="currencyCounts"
     />
 
-    <!-- Main Content -->
     <div class="px-6 py-6">
-      <!-- Page Title -->
       <div class="mb-6">
         <h3 class="text-3xl font-bold text-gray-900 mb-2">My payslips</h3>
       </div>
 
-      <!-- Breadcrumb and Analytics Button -->
       <div class="flex items-center justify-between mb-6">
         <div class="text-gray-600">Payslips > 2025</div>
         <button class="p-2 bg-blue-600 text-white rounded-lg shadow-sm">
@@ -23,7 +19,6 @@
         </button>
       </div>
 
-      <!-- Payslips Table -->
       <PayslipsTable 
         :payslips="filteredPayslips"
         :expanded-payslips="expandedPayslips"
@@ -38,7 +33,6 @@ import PayslipsHeader from '@/components/PayslipsHeader.vue'
 import PayslipsTable from '@/components/PayslipsTable.vue'
 import { usePayslips } from '@/composables/usePayslips'
 
-// Use the payslips composable
 const {
   selectedCurrency,
   expandedPayslips,

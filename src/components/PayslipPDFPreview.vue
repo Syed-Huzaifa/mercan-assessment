@@ -102,16 +102,13 @@ interface Props {
 
 const props = defineProps<Props>()
 
-// PDF zoom functionality
 const pdfHeight = ref(600)
 const zoomLevel = ref(1)
 
-// Computed PDF source with parameters
 const pdfSrc = computed(() => {
   return `/data/payslips/${props.payslip.accessToken}.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=${Math.round(zoomLevel.value * 100)}`
 })
 
-// Zoom functions
 const zoomIn = () => {
   zoomLevel.value = Math.min(zoomLevel.value + 0.25, 3)
   pdfHeight.value = Math.min(pdfHeight.value + 50, 800)
@@ -122,7 +119,6 @@ const zoomOut = () => {
   pdfHeight.value = Math.max(pdfHeight.value - 50, 400)
 }
 
-// Download function
 const downloadPayslip = () => {
   const link = document.createElement('a')
   const pdfContent = `data:text/plain;charset=utf-8,${encodeURIComponent(`Payslip: ${props.payslip.filename}\nAccess Token: ${props.payslip.accessToken}\n\nThis is a placeholder. In a real application, this would download the actual PDF file.`)}`

@@ -1,7 +1,6 @@
 <template>
   <div class="p-8">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">Leaves</h1>
       <p class="text-gray-600">Request and manage your leave applications</p>
     </div>
     

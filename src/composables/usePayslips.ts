@@ -68,15 +68,12 @@ export function usePayslips() {
     })
   }
 
-  // Initialize payslips data immediately
   const payslips = ref<Payslip[]>(processPayslipsData(payslipsData))
 
-  // Filtered payslips based on selected currency
   const filteredPayslips = computed(() => {
     return payslips.value.filter(payslip => payslip.currency === selectedCurrency.value)
   })
 
-  // Currency counts
   const currencyCounts = computed(() => {
     const counts = payslips.value.reduce((acc, payslip) => {
       acc[payslip.currency] = (acc[payslip.currency] || 0) + 1
@@ -85,13 +82,10 @@ export function usePayslips() {
     return counts
   })
 
-  // Toggle expanded state for payslip (only one row can be expanded at a time)
   const toggleExpanded = (payslipId: string) => {
     if (expandedPayslips.value.has(payslipId)) {
-      // If clicking on the currently expanded row, close it
       expandedPayslips.value.clear()
     } else {
-      // Close any currently expanded row and open the new one
       expandedPayslips.value.clear()
       expandedPayslips.value.add(payslipId)
     }
