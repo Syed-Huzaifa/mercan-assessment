@@ -11,7 +11,7 @@ const pageTitle = computed(() => {
   return route.name as string || 'Dashboard'
 })
 
-const sidebarOpen = ref(false)
+const sidebarOpen = ref(true)
 </script>
 
 <template>
