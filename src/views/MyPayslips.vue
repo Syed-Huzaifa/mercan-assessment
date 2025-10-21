@@ -5,32 +5,37 @@
       :currency-counts="currencyCounts"
     />
 
-    <div class="px-6 py-6">
-      <div class="mb-6">
-        <h3 class="text-3xl font-bold text-gray-900 mb-2">My payslips</h3>
+    <div class="px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6">
+      <div class="mb-4 sm:mb-6">
+        <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">My payslips</h3>
       </div>
 
-      <div class="flex items-center justify-between mb-6">
-        <div class="text-gray-600">Payslips > 2025</div>
-        <button class="p-2 bg-blue-600 text-white rounded-lg shadow-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-          </svg>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
+        <div class="text-xs sm:text-sm lg:text-base text-gray-600">Payslips > 2025</div>
+        <button @click="openSalaryEvolutionDialog" class="p-2 sm:p-2 bg-[#1A3E6D] text-white rounded-lg shadow-sm hover:bg-[#1A3E6D]/90 transition-colors self-start sm:self-auto">
+          <img :src="AnalyticsIcon" alt="Analytics" class="w-4 h-4 filter brightness-0 invert" />
         </button>
       </div>
 
-      <PayslipsTable 
-        :payslips="filteredPayslips"
-        :expanded-payslips="expandedPayslips"
-        @toggle-expanded="toggleExpanded"
-      />
+      <div class="w-full overflow-hidden">
+        <PayslipsTable 
+          :payslips="filteredPayslips"
+          :expanded-payslips="expandedPayslips"
+          @toggle-expanded="toggleExpanded"
+        />
+      </div>
     </div>
+
+    <SalaryEvolutionDialog ref="salaryEvolutionDialogRef" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import PayslipsHeader from '@/components/PayslipsHeader.vue'
 import PayslipsTable from '@/components/PayslipsTable.vue'
+import SalaryEvolutionDialog from '@/components/SalaryEvolutionDialog.vue'
+import AnalyticsIcon from '@/assets/icons/salary-evolution.svg'
 import { usePayslips } from '@/composables/usePayslips'
 
 const {
@@ -40,4 +45,10 @@ const {
   currencyCounts,
   toggleExpanded
 } = usePayslips()
+
+const salaryEvolutionDialogRef = ref()
+
+const openSalaryEvolutionDialog = () => {
+  salaryEvolutionDialogRef.value?.open()
+}
 </script>
