@@ -1,182 +1,197 @@
 <template>
   <div class="bg-white min-h-screen">
-
-    <div class="px-8 py-6">
-      <div class="flex justify-between items-center gap-8 mb-8">
-        <div class="w-24 h-24 flex items-center justify-center">
+    <div class="container mx-auto px-4 py-6 space-y-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-8">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center">
           <img :src="MercansLogo" alt="Mercans Logo" class="w-full h-full" />
         </div>
-        <h1 class="font-extralight text-[#001738]">Payslip</h1>
+        <h1 class="font-extralight text-[#001738] text-xl sm:text-2xl lg:text-3xl">Payslip</h1>
       </div>
 
-      <div class="flex items-center gap-8 mb-8">
-        <div class="bg-gray-50 w-1/2 rounded-lg p-4">
-          <div class="space-y-6">
-            <div class="flex justify-between">
-              <span class="text-gray-600">Employer</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employer.name }}</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-600">Employer address</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employer.address }}</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-600">Country</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employer.country }}</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-600">Pay Period</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.period }}</span>
-            </div>
-          </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-gray-50 rounded-lg overflow-hidden">
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell class="font-medium text-gray-600">Employer</TableCell>
+                <TableCell class="text-right font-medium">{{ payslipData.employer.name }}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell class="font-medium text-gray-600">Employer address</TableCell>
+                <TableCell class="text-right font-medium">{{ payslipData.employer.address }}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell class="font-medium text-gray-600">Country</TableCell>
+                <TableCell class="text-right font-medium">{{ payslipData.employer.country }}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell class="font-medium text-gray-600">Pay Period</TableCell>
+                <TableCell class="text-right font-medium">{{ payslipData.period }}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
 
-          <div class="w-1/2">
-            <div class="bg-[#E7F3EA] rounded-lg p-14 text-right">
-            <div class="text-gray-600 text-sm mb-2">Net Pay</div>
-            <div class="text-4xl font-extralight text-gray-800">{{ payslipData.netPay }}</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-gray-50 rounded-lg py-8">
-        <div class="flex justify-between items-center">
-          <div class="space-y-6 px-8">
-            <div class="flex justify-between gap-5 text-left">
-              <span class="text-gray-600">Employee</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employee.name }}</span>
-            </div>
-            <div class="flex justify-between gap-5 text-left">
-              <span class="text-gray-600">Employee ID</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employee.id }}</span>
-            </div>
-            <div class="flex justify-between gap-5 text-left">
-              <span class="text-gray-600">Position</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employee.position }}</span>
-            </div>
-            <div class="flex justify-between gap-5 text-left">
-              <span class="text-gray-600">Email</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employee.email }}</span>
-            </div>
-          </div>
-          <div class="space-y-6 px-24">
-            <div class="flex justify-between gap-5">
-              <span class="text-gray-600">Hire Date</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employee.hireDate }}</span>
-            </div>
-            <div class="flex justify-between gap-5">
-              <span class="text-gray-600">Payment Method</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.employee.paymentMethod }}</span>
-            </div>
-            <div class="flex justify-between gap-5">
-              <span class="text-gray-600">Pay Period</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.period }}</span>
-            </div>
-            <div class="flex justify-between gap-5">
-              <span class="text-gray-600">Currency</span>
-              <span class="text-gray-800 font-medium">{{ payslipData.currency }}</span>
-            </div>
-          </div>
+        <div class="bg-[#E7F3EA] rounded-lg p-8 text-center lg:text-right flex flex-col justify-center">
+          <div class="text-gray-600 mb-2">Net Pay</div>
+          <div class="text-3xl lg:text-4xl font-extralight text-gray-800">{{ payslipData.netPay }}</div>
         </div>
       </div>
 
+      <div class="bg-gray-50 rounded-lg overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Employee</TableCell>
+                  <TableCell class="text-right font-medium">{{ payslipData.employee.name }}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Employee ID</TableCell>
+                  <TableCell class="text-right font-medium">{{ payslipData.employee.id }}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Position</TableCell>
+                  <TableCell class="text-right font-medium">{{ payslipData.employee.position }}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Email</TableCell>
+                  <TableCell class="text-right font-medium break-all">{{ payslipData.employee.email }}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+          <div>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Hire Date</TableCell>
+                  <TableCell class="text-right font-medium">{{ payslipData.employee.hireDate }}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Payment Method</TableCell>
+                  <TableCell class="text-right font-medium">{{ payslipData.employee.paymentMethod }}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Pay Period</TableCell>
+                  <TableCell class="text-right font-medium">{{ payslipData.period }}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell class="font-medium text-gray-600">Currency</TableCell>
+                  <TableCell class="text-right font-medium">{{ payslipData.currency }}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      </div>
 
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4">Summary</h2>
+
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-blue-900 mb-4">Summary</h2>
         <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
-            <div class="grid grid-cols-4 gap-4">
-              <div class="text-gray-600 font-medium">Pay currency</div>
-              <div class="text-gray-600 font-medium text-right">Entitlements</div>
-              <div class="text-gray-600 font-medium text-right">Deductions</div>
-              <div class="text-gray-600 font-medium text-right">Net pay</div>
-            </div>
-          </div>
-          <div class="px-4 py-3">
-            <div class="grid grid-cols-4 gap-4">
-              <div class="text-gray-800">{{ payslipData.currency }}</div>
-              <div class="text-gray-800 text-right font-medium">{{ payslipData.summary.entitlements }}</div>
-              <div class="text-gray-800 text-right font-medium">{{ payslipData.summary.deductions }}</div>
-              <div class="text-gray-800 text-right font-medium">{{ payslipData.summary.netPay }}</div>
-            </div>
-          </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead class="text-gray-600">Pay currency</TableHead>
+                <TableHead class="text-right text-gray-600">Entitlements</TableHead>
+                <TableHead class="text-right text-gray-600">Deductions</TableHead>
+                <TableHead class="text-right text-gray-600">Net pay</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell class="font-medium">{{ payslipData.currency }}</TableCell>
+                <TableCell class="text-right font-medium">{{ payslipData.summary.entitlements }}</TableCell>
+                <TableCell class="text-right font-medium">{{ payslipData.summary.deductions }}</TableCell>
+                <TableCell class="text-right font-medium">{{ payslipData.summary.netPay }}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
       </div>
 
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4">Details</h2>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-blue-900 mb-4">Details</h2>
         
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-700 mb-3">Entitlements</h3>
-          <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
-              <div class="grid grid-cols-3 gap-4">
-                <div class="text-gray-600 font-medium">Payelement</div>
-                <div class="text-gray-600 font-medium text-right">Amount</div>
-                <div class="text-gray-600 font-medium text-right">Currency</div>
-              </div>
-            </div>
-            <div class="px-4 py-3">
-              <div class="grid grid-cols-3 gap-4">
-                <div class="text-gray-800">{{ payslipData.entitlements[0].description }}</div>
-                <div class="text-gray-800 text-right font-medium">{{ payslipData.entitlements[0].amount }}</div>
-                <div class="text-gray-800 text-right">{{ payslipData.entitlements[0].currency }}</div>
-              </div>
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-base sm:text-lg font-semibold text-gray-700 mb-3">Entitlements</h3>
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead class="text-gray-600">Payelement</TableHead>
+                    <TableHead class="text-right text-gray-600">Amount</TableHead>
+                    <TableHead class="text-right text-gray-600">Currency</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell class="font-medium">{{ payslipData.entitlements[0].description }}</TableCell>
+                    <TableCell class="text-right font-medium">{{ payslipData.entitlements[0].amount }}</TableCell>
+                    <TableCell class="text-right">{{ payslipData.entitlements[0].currency }}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </div>
           </div>
-        </div>
 
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-700 mb-3">Deductions</h3>
-          <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
-              <div class="grid grid-cols-3 gap-4">
-                <div class="text-gray-600 font-medium">Payelement</div>
-                <div class="text-gray-600 font-medium text-right">Amount</div>
-                <div class="text-gray-600 font-medium text-right">Currency</div>
-              </div>
-            </div>
-            <div class="space-y-0">
-              <div v-for="(deduction, index) in payslipData.deductions" :key="index" class="px-4 py-3 border-b border-gray-100 last:border-b-0">
-                <div class="grid grid-cols-3 gap-4">
-                  <div class="text-gray-800">{{ deduction.description }}</div>
-                  <div class="text-gray-800 text-right font-medium">{{ deduction.amount }}</div>
-                  <div class="text-gray-800 text-right">{{ deduction.currency }}</div>
-                </div>
-              </div>
+          <div>
+            <h3 class="text-base sm:text-lg font-semibold text-gray-700 mb-3">Deductions</h3>
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead class="text-gray-600">Payelement</TableHead>
+                    <TableHead class="text-right text-gray-600">Amount</TableHead>
+                    <TableHead class="text-right text-gray-600">Currency</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow v-for="(deduction, index) in payslipData.deductions" :key="index">
+                    <TableCell class="font-medium">{{ deduction.description }}</TableCell>
+                    <TableCell class="text-right font-medium">{{ deduction.amount }}</TableCell>
+                    <TableCell class="text-right">{{ deduction.currency }}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold text-gray-700 mb-3">Banking details</h3>
+      <div>
+        <h3 class="text-base sm:text-lg font-semibold text-gray-700 mb-3">Banking details</h3>
         <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
-            <div class="grid grid-cols-6 gap-4">
-              <div class="text-gray-600 font-medium">Bank name</div>
-              <div class="text-gray-600 font-medium">SWIFT</div>
-              <div class="text-gray-600 font-medium">Beneficiary name</div>
-              <div class="text-gray-600 font-medium">Acc. number</div>
-              <div class="text-gray-600 font-medium">Account currency</div>
-              <div class="text-gray-600 font-medium">Type</div>
-            </div>
-          </div>
-          <div class="px-4 py-3">
-            <div class="grid grid-cols-6 gap-4">
-              <div class="text-gray-800">{{ payslipData.banking.bankName }}</div>
-              <div class="text-gray-800">{{ payslipData.banking.swift }}</div>
-              <div class="text-gray-800">{{ payslipData.banking.beneficiaryName }}</div>
-              <div class="text-gray-800">{{ payslipData.banking.accountNumber }}</div>
-              <div class="text-gray-800">{{ payslipData.banking.accountCurrency }}</div>
-              <div class="text-gray-800">{{ payslipData.banking.type }}</div>
-            </div>
-          </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead class="text-gray-600">Bank name</TableHead>
+                <TableHead class="text-gray-600">SWIFT</TableHead>
+                <TableHead class="text-gray-600">Beneficiary name</TableHead>
+                <TableHead class="text-gray-600">Acc. number</TableHead>
+                <TableHead class="text-gray-600">Account currency</TableHead>
+                <TableHead class="text-gray-600">Type</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell class="font-medium break-words">{{ payslipData.banking.bankName }}</TableCell>
+                <TableCell class="font-medium break-all">{{ payslipData.banking.swift }}</TableCell>
+                <TableCell class="font-medium break-words">{{ payslipData.banking.beneficiaryName }}</TableCell>
+                <TableCell class="font-medium break-all">{{ payslipData.banking.accountNumber }}</TableCell>
+                <TableCell class="font-medium">{{ payslipData.banking.accountCurrency }}</TableCell>
+                <TableCell class="font-medium">{{ payslipData.banking.type }}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>
 
-    <div class="bg-white border-t border-gray-200 px-8 py-4 text-center">
+    <div class="bg-white border-t border-gray-200 px-4 py-4 text-center">
       <div class="text-sm text-gray-500">
         <div>This document has been generated by HR Blizz</div>
         <div>© All rights reserved</div>
@@ -191,6 +206,7 @@ import type { Payslip, PayslipData } from '@/composables/usePayslips'
 import { usePayslips } from '@/composables/usePayslips'
 import payslipsData from '@/data/payslips.json'
 import MercansLogo from '@/assets/icons/mercans.svg'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 interface Props {
   payslip: Payslip
