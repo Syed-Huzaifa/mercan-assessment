@@ -12,9 +12,18 @@
 
       <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
         <div class="text-xs sm:text-sm lg:text-base text-gray-600">Payslips > 2025</div>
-        <button @click="openSalaryEvolutionDialog" class="p-2 sm:p-2 bg-[#1A3E6D] text-white rounded-lg shadow-sm hover:bg-[#1A3E6D]/90 transition-colors self-start sm:self-auto">
-          <img :src="AnalyticsIcon" alt="Analytics" class="w-4 h-4 filter brightness-0 invert" />
-        </button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger as-child>
+              <button @click="openSalaryEvolutionDialog" class="p-2 sm:p-2 bg-[#1A3E6D] text-white rounded-lg shadow-sm hover:bg-[#1A3E6D]/90 transition-colors self-start sm:self-auto">
+                <img :src="AnalyticsIcon" alt="Analytics" class="w-4 h-4 filter brightness-0 invert" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>View salary evolution</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
 
       <div class="w-full overflow-hidden">
@@ -37,6 +46,7 @@ import PayslipsTable from '@/components/PayslipsTable.vue'
 import SalaryEvolutionDialog from '@/components/SalaryEvolutionDialog.vue'
 import AnalyticsIcon from '@/assets/icons/salary-evolution.svg'
 import { usePayslips } from '@/composables/usePayslips'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 const {
   selectedCurrency,
