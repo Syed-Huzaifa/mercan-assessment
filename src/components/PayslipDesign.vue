@@ -14,19 +14,19 @@
             <TableBody>
               <TableRow>
                 <TableCell class="font-medium text-gray-600">Employer</TableCell>
-                <TableCell class="text-right font-medium">{{ payslipData.employer.name }}</TableCell>
+                <TableCell class="text-right font-medium">{{ props.payslip.employer.name }}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell class="font-medium text-gray-600">Employer address</TableCell>
-                <TableCell class="text-right font-medium">{{ payslipData.employer.address }}</TableCell>
+                <TableCell class="text-right font-medium">{{ props.payslip.employer.address }}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell class="font-medium text-gray-600">Country</TableCell>
-                <TableCell class="text-right font-medium">{{ payslipData.employer.country }}</TableCell>
+                <TableCell class="text-right font-medium">{{ props.payslip.employer.country }}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell class="font-medium text-gray-600">Pay Period</TableCell>
-                <TableCell class="text-right font-medium">{{ payslipData.period }}</TableCell>
+                <TableCell class="text-right font-medium">{{ props.payslip.period }}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -34,7 +34,7 @@
 
         <div class="bg-[#E7F3EA] rounded-lg p-8 text-center lg:text-right flex flex-col justify-center">
           <div class="text-gray-600 mb-2">Net Pay</div>
-          <div class="text-3xl lg:text-4xl font-extralight text-gray-800">{{ payslipData.netPay }}</div>
+          <div class="text-3xl lg:text-4xl font-extralight text-gray-800">{{ props.payslip.netPay }}</div>
         </div>
       </div>
 
@@ -45,19 +45,19 @@
               <TableBody>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Employee</TableCell>
-                  <TableCell class="text-right font-medium">{{ payslipData.employee.name }}</TableCell>
+                  <TableCell class="text-right font-medium">{{ props.payslip.employee.name }}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Employee ID</TableCell>
-                  <TableCell class="text-right font-medium">{{ payslipData.employee.id }}</TableCell>
+                  <TableCell class="text-right font-medium">{{ props.payslip.employee.id }}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Position</TableCell>
-                  <TableCell class="text-right font-medium">{{ payslipData.employee.position }}</TableCell>
+                  <TableCell class="text-right font-medium">{{ props.payslip.employee.position }}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Email</TableCell>
-                  <TableCell class="text-right font-medium break-all">{{ payslipData.employee.email }}</TableCell>
+                  <TableCell class="text-right font-medium break-all">{{ props.payslip.employee.email }}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -67,19 +67,19 @@
               <TableBody>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Hire Date</TableCell>
-                  <TableCell class="text-right font-medium">{{ payslipData.employee.hireDate }}</TableCell>
+                  <TableCell class="text-right font-medium">{{ props.payslip.employee.hireDate }}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Payment Method</TableCell>
-                  <TableCell class="text-right font-medium">{{ payslipData.employee.paymentMethod }}</TableCell>
+                  <TableCell class="text-right font-medium">{{ props.payslip.employee.paymentMethod }}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Pay Period</TableCell>
-                  <TableCell class="text-right font-medium">{{ payslipData.period }}</TableCell>
+                  <TableCell class="text-right font-medium">{{ props.payslip.period }}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell class="font-medium text-gray-600">Currency</TableCell>
-                  <TableCell class="text-right font-medium">{{ payslipData.currency }}</TableCell>
+                  <TableCell class="text-right font-medium">{{ props.payslip.currency }}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -102,10 +102,10 @@
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell class="font-medium">{{ payslipData.currency }}</TableCell>
-                <TableCell class="text-right font-medium">{{ payslipData.summary.entitlements }}</TableCell>
-                <TableCell class="text-right font-medium">{{ payslipData.summary.deductions }}</TableCell>
-                <TableCell class="text-right font-medium">{{ payslipData.summary.netPay }}</TableCell>
+                <TableCell class="font-medium">{{ props.payslip.currency }}</TableCell>
+                <TableCell class="text-right font-medium">{{ props.payslip.summary.entitlements }}</TableCell>
+                <TableCell class="text-right font-medium">{{ props.payslip.summary.deductions }}</TableCell>
+                <TableCell class="text-right font-medium">{{ props.payslip.summary.netPay }}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -129,9 +129,9 @@
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell class="font-medium">{{ payslipData.entitlements[0].description }}</TableCell>
-                    <TableCell class="text-right font-medium">{{ payslipData.entitlements[0].amount }}</TableCell>
-                    <TableCell class="text-right">{{ payslipData.entitlements[0].currency }}</TableCell>
+                    <TableCell class="font-medium">{{ props.payslip.entitlements[0].description }}</TableCell>
+                    <TableCell class="text-right font-medium">{{ props.payslip.entitlements[0].amount }}</TableCell>
+                    <TableCell class="text-right">{{ props.payslip.entitlements[0].currency }}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -150,7 +150,7 @@
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow v-for="(deduction, index) in payslipData.deductions" :key="index">
+                  <TableRow v-for="(deduction, index) in props.payslip.deductions" :key="index">
                     <TableCell class="font-medium">{{ deduction.description }}</TableCell>
                     <TableCell class="text-right font-medium">{{ deduction.amount }}</TableCell>
                     <TableCell class="text-right">{{ deduction.currency }}</TableCell>
@@ -178,12 +178,12 @@
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell class="font-medium break-words">{{ payslipData.banking.bankName }}</TableCell>
-                <TableCell class="font-medium break-all">{{ payslipData.banking.swift }}</TableCell>
-                <TableCell class="font-medium break-words">{{ payslipData.banking.beneficiaryName }}</TableCell>
-                <TableCell class="font-medium break-all">{{ payslipData.banking.accountNumber }}</TableCell>
-                <TableCell class="font-medium">{{ payslipData.banking.accountCurrency }}</TableCell>
-                <TableCell class="font-medium">{{ payslipData.banking.type }}</TableCell>
+                <TableCell class="font-medium break-words">{{ props.payslip.banking.bankName }}</TableCell>
+                <TableCell class="font-medium break-all">{{ props.payslip.banking.swift }}</TableCell>
+                <TableCell class="font-medium break-words">{{ props.payslip.banking.beneficiaryName }}</TableCell>
+                <TableCell class="font-medium break-all">{{ props.payslip.banking.accountNumber }}</TableCell>
+                <TableCell class="font-medium">{{ props.payslip.banking.accountCurrency }}</TableCell>
+                <TableCell class="font-medium">{{ props.payslip.banking.type }}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -201,10 +201,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { Payslip, PayslipData } from '@/composables/usePayslips'
-import { usePayslips } from '@/composables/usePayslips'
-import payslipsData from '@/data/payslips.json'
+import type { Payslip } from '@/composables/usePayslips'
 import MercansLogo from '@/assets/icons/mercans.svg'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
@@ -213,104 +210,4 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const { payslips } = usePayslips()
-
-const payslipData = computed(() => {
-  const originalPayslipData = payslipsData.find(p => p.fileAttachment.accessToken === props.payslip.accessToken) as PayslipData
-  
-  if (!originalPayslipData) {
-    return {
-      ...props.payslip,
-      employer: { name: "N/A", address: "N/A", country: "N/A" },
-      employee: { name: "N/A", id: "N/A", position: "N/A", email: "N/A", hireDate: "N/A", paymentMethod: "N/A" },
-      summary: { entitlements: "0.00", deductions: "0.00", netPay: "0.00" },
-      entitlements: [{ description: "62100 - Basic Salary", amount: "0.00", currency: props.payslip.currency }],
-      deductions: [{ description: "66xxx - Total Deductions", amount: "0.00", currency: props.payslip.currency }],
-      banking: { bankName: "N/A", swift: "N/A", beneficiaryName: "N/A", accountNumber: "N/A", accountCurrency: "N/A", type: "N/A" }
-    }
-  }
-
-  const filename = originalPayslipData.fileAttachment.file.label
-  const filenameParts = filename.split(' - ')
-  const employeeName = filenameParts[2] || "Unknown Employee"
-  const employeeId = filenameParts[1] || "Unknown ID"
-  
-  const grossEntry = originalPayslipData.payslipEntries.find(entry => entry.key === 'GROSS')
-  const netPayEntry = originalPayslipData.payslipEntries.find(entry => entry.key === 'NET PAY')
-  const entitlementsEntry = originalPayslipData.payslipEntries.find(entry => entry.key === 'ENTITLEMENTS')
-  const deductionsEntry = originalPayslipData.payslipEntries.find(entry => entry.key === 'DEDUCTIONS')
-  const totalDeductionsEntry = originalPayslipData.payslipEntries.find(entry => entry.key === 'TOTAL DEDUCTIONS')
-  
-  const grossAmount = grossEntry?.amount || 0
-  const netAmount = netPayEntry?.amount || 0
-  const entitlementsAmount = entitlementsEntry?.amount || grossAmount
-  const deductionsAmount = deductionsEntry?.amount || 0
-  const totalDeductionsAmount = totalDeductionsEntry?.amount || deductionsAmount
-  
-  const employerDetails = props.payslip.currency === 'USD' 
-    ? {
-        name: "Mercans USA Ltd.",
-        address: "325 Court Street, 2nd Floor, Brooklyn, NY 11231",
-        country: "USA"
-      }
-    : {
-        name: "Mercans Europe Ltd.",
-        address: "123 Business Street, London, UK",
-        country: "UK"
-      }
-  
-  const emailPrefix = employeeName.toLowerCase().replace(/\s+/g, '')
-  const employeeEmail = `${emailPrefix}@mercans.com`
-  
-  const bankingDetails = props.payslip.currency === 'USD'
-    ? {
-        bankName: "First National Bank of New York",
-        swift: "FNBUS33XXX",
-        beneficiaryName: employeeName,
-        accountNumber: "123456789012",
-        accountCurrency: props.payslip.currency,
-        type: "Primary"
-      }
-    : {
-        bankName: "Barclays Bank PLC",
-        swift: "BARCGB22XXX",
-        beneficiaryName: employeeName,
-        accountNumber: "987654321098",
-        accountCurrency: props.payslip.currency,
-        type: "Primary"
-      }
-  
-  return {
-    ...props.payslip,
-    employer: employerDetails,
-    employee: {
-      name: employeeName,
-      id: employeeId,
-      position: "Product Manager",
-      email: employeeEmail,
-      hireDate: "07.08.2019",
-      paymentMethod: "Bank"
-    },
-    summary: {
-      entitlements: entitlementsAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-      deductions: totalDeductionsAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-      netPay: netAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-    },
-    entitlements: [
-      {
-        description: "62100 - Basic Salary",
-        amount: entitlementsAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-        currency: props.payslip.currency
-      }
-    ],
-    deductions: [
-      {
-        description: "66xxx - Total Deductions",
-        amount: totalDeductionsAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-        currency: props.payslip.currency
-      }
-    ],
-    banking: bankingDetails
-  }
-})
 </script>

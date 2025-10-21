@@ -1,7 +1,7 @@
 <template>
   <Dialog v-model:open="isOpen">
-    <DialogContent class="w-full h-[95vh] sm:h-[90vh] md:h-[85vh] lg:h-[80vh] p-0">
-      <div class="px-4 sm:px-6 py-4 border-b border-gray-200">
+    <DialogContent class="w-full h-[95vh] sm:h-[90vh] md:h-[85vh] lg:h-[80vh] p-0 flex flex-col">
+      <div class="px-4 sm:px-6 py-4 border-b border-gray-200 flex-shrink-0">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
             <span class="text-xs sm:text-sm text-gray-500 whitespace-nowrap">Mercans USA Ltd.</span>
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="flex-1 p-4 sm:p-6">
+      <div class="flex-1 p-4 sm:p-6 min-h-0">
         <div class="w-full h-full border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center bg-gray-50">
           <div class="mb-4 sm:mb-6 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
             <img :src="CraneIllustration" alt="Crane Illustration" class="w-full h-full object-contain" />
